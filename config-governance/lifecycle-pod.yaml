@@ -1,0 +1,14 @@
+version: "1.0"
+steps:
+  scale_action:
+    title: "Executing Scaling Logic"
+    type: "freestyle"
+    image: "alpine/k8s:1.27.1"
+    commands:
+      # Logic for creation or deletion based on a variable
+      - |
+        if [ "${{ACTION}}" == "DELETE" ]; then
+          kubectl delete deployment ${{APP_NAME}} -n ${{NAMESPACE}}
+        else
+          kubectl apply -f manifests/deployment.yaml -n ${{NAMESPACE}}
+        fi

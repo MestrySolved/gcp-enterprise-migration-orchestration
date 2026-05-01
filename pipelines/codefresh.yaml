@@ -1,0 +1,23 @@
+version: "1.0"
+stages:
+  - "prepare"
+  - "deploy"
+  - "validate"
+
+steps:
+  init:
+    title: "Setting Environment Variables"
+    stage: "prepare"
+    image: "alpine:latest"
+    commands:
+      - cf_export TARGET_NAMESPACE=${{NAMESPACE_NAME}}
+      - cf_export DEPLOY_COLOR=${{DEPLOYMENT_COLOR}}
+
+  deploy_manifests:
+    title: "Executing GKE Deployment"
+    stage: "deploy"
+    type: "kubernetes-deploy"
+    arguments:
+      kind: "deployment"
+      file_path: "./manifests/deployment.yaml"
+      namespace: "${{TARGET_NAMESPACE}}"

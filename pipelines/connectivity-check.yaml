@@ -1,0 +1,8 @@
+version: "1.0"
+steps:
+  test_connectivity:
+    title: "Testing Service Mesh"
+    image: "appropriate/curl"
+    commands:
+      # Pinging the DB service from an app pod
+      - kubectl exec -it deploy/${{APP_NAME}} -n ${{NAMESPACE}} -- curl -s -o /dev/null -w "%{http_code}" http://metadata-db-service:5432

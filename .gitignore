@@ -1,0 +1,20 @@
+# Local environment files
+.env
+.env.local
+
+# Kubernetes / Tooling
+.kube/
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# Codefresh / CI/CD
+.cfstate/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Personal Secrets (Should be in Vault, not Repo)
+secrets/*.yaml
+!secrets/template-secret.yaml

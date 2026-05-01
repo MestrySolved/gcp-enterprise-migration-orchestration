@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: go-jo-p
+  labels:
+    env: prod
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: le-vi-p
+  labels:
+    env: prod

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # The name would be appended with -blue or -green in the pipeline
+  name: app-deployment-${DEPLOY_COLOR}
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-service
+      version: ${DEPLOY_COLOR}
+  template:
+    metadata:
+      labels:
+        app: my-service
+        version: ${DEPLOY_COLOR}
+    spec:
+      containers:
+      - name: main-app
+        image: gcr.io/my-project/my-app:${IMAGE_TAG}
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "1Gi"
+          limits:
+            cpu: "1000m"
+            memory: "2Gi"

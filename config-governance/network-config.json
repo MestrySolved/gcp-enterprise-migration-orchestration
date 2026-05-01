@@ -1,0 +1,24 @@
+{
+  "network_metadata": {
+    "vpc_name": "gcp-migration-vpc",
+    "environments": {
+      "dev": {
+        "pod_cidr": "10.1.0.0/16",
+        "service_cidr": "10.2.0.0/20",
+        "namespaces": ["na-ru-to-np", "sa-su-ke-np", "op-zo-ro-np"]
+      },
+      "prod": {
+        "pod_cidr": "10.3.0.0/16",
+        "service_cidr": "10.4.0.0/20",
+        "namespaces": ["go-jo-p", "le-vi-p"]
+      }
+    },
+    "firewall_rules": [
+      {
+        "name": "allow-internal-mesh",
+        "source": "10.0.0.0/8",
+        "action": "ALLOW"
+      }
+    ]
+  }
+}
